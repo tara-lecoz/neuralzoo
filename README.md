@@ -1,9 +1,106 @@
 # Contexte du projet
 
-
 # Veille
 
-## Réseaux de Neurones Convolutifs (CNN) : Synthèse
+---
+
+## I. Perceptron Multicouches (MLP) : Synthèse
+
+### 1. Architecture du Perceptron Multicouche (PMC)
+
+Le Perceptron Multicouche (Multilayer Perceptron - MLP) est un type de réseau de neurones artificiels structuré en plusieurs couches de neurones :
+
+* **Couche d'entrée** : elle reçoit les données d'entrée. Chaque neurone de cette couche correspond à une feature de l'entrée.
+* **Couches cachées** : situées entre l'entrée et la sortie, elles permettent au réseau de modéliser des relations complexes. On parle souvent de couches **denses** lorsque chaque neurone est connecté à tous les neurones de la couche précédente.
+* **Couche de sortie** : elle donne le résultat final du modèle. Le nombre de neurones dépend du type de tâche (classification binaire, multi-classes, régression).
+
+#### Hyperparamètres typiques :
+
+* Nombre de couches cachées
+* Nombre de neurones par couche
+* Fonction(s) d'activation
+* Taux d'apprentissage (learning rate)
+* Méthode d'optimisation (Adam, SGD, etc.)
+* Nombre d'épochs
+* Taille du batch
+
+### 2. Choix de l'architecture selon la problématique
+
+* **Classification** :
+  * Couche de sortie avec une activation **sigmoïde** (binaire) ou **softmax** (multi-classes).
+  * Fonction de perte : entropie croisée (cross-entropy).
+* **Régression** :
+  * Couche de sortie avec une activation **linéaire**.
+  * Fonction de perte : erreur quadratique moyenne (MSE).
+
+Le nombre de couches cachées et de neurones dépend de la complexité du problème, du volume de données, et de la capacité de généralisation souhaitée.
+
+### 3. Définitions de termes clés
+
+* **Fonction d'activation** : transforme la sortie d'un neurone de façon non-linéaire. Permet de modéliser des fonctions complexes.
+* **Propagation (forward propagation)** : phase où les données d'entrée traversent le réseau jusqu'à la sortie.
+* **Rétropropagation (backpropagation)** : méthode d'entraînement qui ajuste les poids en fonction de l'erreur.
+* **Loss function (fonction de coût)** : mesure l'écart entre la sortie prédite et la vraie valeur.
+* **Descente de gradient** : algorithme d'optimisation qui ajuste les poids pour minimiser la perte.
+* **Vanishing gradients** : phénomène où les gradients deviennent très petits, ralentissant voire bloquant l'apprentissage, surtout dans les réseaux profonds.
+
+### 4. Fonction d’activation : Définition et exemples
+
+Une **fonction d’activation** introduit de la non-linéarité dans le modèle. Sans elle, le réseau ne pourrait modéliser que des relations linéaires.
+
+Exemples :
+
+* **ReLU (Rectified Linear Unit)** : `f(x) = max(0, x)`
+* **Sigmoïde** : `f(x) = 1 / (1 + exp(-x))`
+* **Tanh** : `f(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))`
+* **Softmax** : utilisée pour la classification multi-classes, donne une distribution de probabilité.
+
+### 5. Epochs, Iterations et Batch size
+
+* **Epoch** : une passe complète sur l'ensemble des données d'entraînement.
+* **Batch size** : nombre d'échantillons traités avant une mise à jour des poids.
+* **Iteration** : une mise à jour des poids. Nombre d’itérations = nombre d’échantillons / batch size * nombre d’époques.
+
+### 6. Taux d’apprentissage (learning rate)
+
+Le **learning rate** détermine l’amplitude des mises à jour des poids à chaque itération.
+
+* Trop bas : apprentissage lent, risque de stagnation.
+* Trop élevé : apprentissage instable, risque de divergence.
+
+### 7. Batch Normalization
+
+La **batch normalization** est une technique qui consiste à normaliser les activations d'une couche en les centrant et réduisant, puis en les réajustant.
+
+**Avantages** :
+
+* Accélère l'entraînement
+* Stabilise la propagation des gradients
+* Permet des learning rates plus élevés
+
+### 8. Algorithme d’optimisation Adam
+
+**Adam (Adaptive Moment Estimation)** est un algorithme d’optimisation combinant les avantages de l’optimisation par **momentum** et de l’**adaptation du learning rate** pour chaque paramètre.
+
+**Avantages** :
+
+* Convergence rapide
+* Moins sensible au choix du learning rate
+* Très utilisé pour l’apprentissage profond
+
+### 9. Définition simple du Perceptron Multicouche
+
+Un **Perceptron Multicouche** est un réseau de neurones composé d’une couche d’entrée, de plusieurs couches cachées (denses), et d’une couche de sortie. Il est capable de modéliser des relations non-linéaires complexes et peut être utilisé pour des tâches de classification ou de régression.
+
+ReLU permet d’introduire de la non-linéarité tout en limitant le problème du gradient qui disparaît. D’autres fonctions comme `tanh` ou `sigmoid` peuvent également être utilisées selon les cas.
+
+#### 3. Couche Entièrement Connectée (Fully Connected Layer - FCL)
+
+Le MLP repose **entièrement** sur des couches entièrement connectées. Chaque neurone d’une couche est connecté à **tous** les neurones de la couche précédente. Cela permet une  **forte capacité d’approximation** , mais  **augmente considérablement le nombre de paramètres** , surtout avec des images de grande taille.
+
+---
+
+## II. Réseaux de Neurones Convolutifs (CNN) : Synthèse
 
 ### 1. Veille, Architecture Typique et Hyperparamètres
 
@@ -109,7 +206,9 @@ Les CNN surpassent les réseaux denses (MLP) pour les tâches d'images pour ces 
 3. **Hiérarchie des Caractéristiques :** Les CNN apprennent naturellement des caractéristiques de complexité croissante, des bords simples aux objets complexes, à travers les couches successives.
 4. **Invariance (partielle) aux Translations :** Le pooling et le partage de poids rendent le réseau moins sensible à la position exacte des objets dans l'image.
 
-# Données et leur analyse
+---
+
+## Données et leur analyse
 
 # Algorithmes utilisés
 
